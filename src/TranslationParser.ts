@@ -59,15 +59,21 @@ export default class TranslationParser
         payload[keys[lastKeyIndex]] = value
     }
 
-    private groupToArray(payload : Payload)
+    private groupToArray(payload : Payload) : Payload
     {
+        // If you reach the end of the line and value is not an object then return and exit
+        if(typeof Object.values(payload)[0] === 'string')
+        {
+            return payload
+        }
+
         return Object.keys(payload).reduce((result, key)=> {
             if(this.isArray(key))
             {
                 let stringKey = this.extractStringFromKey(key)!
                 if(stringKey in result)
                 {
-                    result[stringKey].push(payload[key])
+                    result[stringKey].push(this.groupToArray(payload[key]))
                 } else {
                     result[stringKey] = []
                 }
