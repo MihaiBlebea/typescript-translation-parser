@@ -1,6 +1,6 @@
 {
     "name": "typescript-translation-parser",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "This is a translation parser, from flat keys to proper json format",
     "main": "./build/index.js",
     "types": "build/index.d.ts",
