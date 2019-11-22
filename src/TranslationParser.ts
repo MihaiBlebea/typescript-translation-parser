@@ -71,12 +71,11 @@ export default class TranslationParser
             if(this.isArray(key))
             {
                 let stringKey = this.extractStringFromKey(key)!
-                if(stringKey in result)
+                if(!(stringKey in result))
                 {
-                    result[stringKey].push(this.groupToArray(payload[key]))
-                } else {
                     result[stringKey] = []
                 }
+                result[stringKey].push(this.groupToArray(payload[key]))
             } else {
                 result[key] = this.groupToArray(payload[key])
             }

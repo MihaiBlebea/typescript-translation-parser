@@ -66,12 +66,10 @@ class TranslationParser {
         return Object.keys(payload).reduce((result, key) => {
             if (this.isArray(key)) {
                 let stringKey = this.extractStringFromKey(key);
-                if (stringKey in result) {
-                    result[stringKey].push(this.groupToArray(payload[key]));
-                }
-                else {
+                if (!(stringKey in result)) {
                     result[stringKey] = [];
                 }
+                result[stringKey].push(this.groupToArray(payload[key]));
             }
             else {
                 result[key] = this.groupToArray(payload[key]);
